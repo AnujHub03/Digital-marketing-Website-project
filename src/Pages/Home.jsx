@@ -22,7 +22,7 @@ const Home = () => {
         
        
        <Link
-  to="/resume-builder"
+  to="/TemplateSelect"
   className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-blue-500 transition-all duration-300 h-64"
 >
   <div className="p-4 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
