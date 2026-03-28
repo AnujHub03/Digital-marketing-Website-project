@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -20,17 +21,16 @@ const Home = () => {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl'>
         
        
-        <button
-          type="button"
-          className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-blue-500 transition-all duration-300 h-64"
-        >
-          <div className="p-4 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-            <span className="text-3xl">📝</span>
-          </div>
-          <span className="text-2xl font-bold">Resume Builder</span>
-          <p className="text-sm text-gray-500 text-center">Create a job-winning CV</p>
-        </button>
-
+       <Link
+  to="/resume-builder"
+  className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-blue-500 transition-all duration-300 h-64"
+>
+  <div className="p-4 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+    <span className="text-3xl">📝</span>
+  </div>
+  <span className="text-2xl font-bold">Resume Builder</span>
+  <p className="text-sm text-gray-500 text-center">Create a job-winning CV</p>
+</Link>
         <button
           type="button"
           className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-purple-500 transition-all duration-300 h-64"
