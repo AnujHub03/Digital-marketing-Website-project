@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import ResumeBuilder from './Pages/ResumeBuilder'
 import TemplateSelect from './Pages/TemplatesSelect'
+import JobPortal from './Pages/JobPortal'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home/>} /> 
         <Route path='/resume-builder' element={<ResumeBuilder/>}></Route>
         <Route path='/TemplateSelect' element={<TemplateSelect/>}></Route>
+        <Route path='/jobportal' element={<JobPortal/>}></Route>
        
       </Routes>
     </>

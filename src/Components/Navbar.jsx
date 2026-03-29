@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const nav = useNavigate()
   return (
    <div className="navbar bg-base-100 text-base-content shadow-md px-4 lg:px-20 font-montserrat sticky top-0 z-[100]">
       <div className="navbar-start">
@@ -12,7 +13,7 @@ const Navbar = () => {
             </svg>
           </label>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52 border border-base-200">
-            <li><Link>Home</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link>About</Link></li>
             <li><Link>Contact</Link></li>
             <li><Link>Our Services</Link></li>
@@ -21,7 +22,7 @@ const Navbar = () => {
                 <summary>Advance Features</summary>
                 <ul className="p-2 bg-base-200 rounded-md">
                   <li><Link>Influncer Form</Link></li>
-                  <li><Link>Job Portal</Link></li>
+                  <li><Link to="/jobportal">Job Portal</Link></li>
                   <li><Link>Buy Domain</Link></li>
                 </ul>
               </details>
@@ -29,7 +30,7 @@ const Navbar = () => {
           </ul>
         </div>
      
-        <Link className="btn btn-ghost text-2xl font-bold font-serif tracking-tighter">LOGO</Link>
+        <Link className="btn btn-ghost text-2xl font-bold font-serif tracking-tighter" to="/">LOGO</Link>
       </div>
 
       <div className="navbar-center hidden lg:flex items-center gap-8">
@@ -42,7 +43,7 @@ const Navbar = () => {
         </div>
 
         <ul className="menu menu-horizontal px-1 gap-2 font-medium">
-          <li><Link>Home</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link>About</Link></li>
           <li><Link>Contact</Link></li>
           <li><Link>Our Services</Link></li>
@@ -56,7 +57,7 @@ const Navbar = () => {
             </div>
             <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow-xl bg-base-100 rounded-box w-52 top-full border border-base-200">
               <li><Link>Influncer Form</Link></li>
-                  <li><Link>Job Portal</Link></li>
+                  <li><Link to="/jobportal">Job Portal</Link></li>
                   <li><Link>Buy Domain</Link></li>
             </ul>
           </li>
