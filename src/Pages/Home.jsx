@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -38,7 +38,9 @@ const Home = () => {
           <div className="p-4 rounded-full bg-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
             <span className="text-3xl">💼</span>
           </div>
-          <span className="text-2xl font-bold">Portfolio Maker</span>
+          <Link to="/Portfolio" className="text-2xl font-bold">
+            Portfolio Maker
+          </Link>
           <p className="text-sm text-gray-500 text-center">Showcase your best work</p>
         </button>
 
