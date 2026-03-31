@@ -22,7 +22,7 @@ const Home = () => {
         
        
        <Link
-  to="/TemplateSelect"
+  to="/resume-builder"
   className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-blue-500 transition-all duration-300 h-64"
 >
   <div className="p-4 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -31,7 +31,7 @@ const Home = () => {
   <span className="text-2xl font-bold">Resume Builder</span>
   <p className="text-sm text-gray-500 text-center">Create a job-winning CV</p>
 </Link>
-        <Link to="/Portfolio" className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-purple-500 transition-all duration-300 h-64">
+        <Link to="/PortfolioMaker" className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl hover:border-purple-500 transition-all duration-300 h-64">
           <div className="p-4 rounded-full bg-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
             <span className="text-3xl">💼</span>
           </div>

@@ -43,7 +43,7 @@ const ResumeBuilder = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="min-h-96 bg-white font-sans text-slate-900">
       {/* 1. Header */}
       <header className="border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 bg-white z-[100]">
         <div className="flex items-center gap-4">
@@ -66,7 +66,7 @@ const ResumeBuilder = () => {
         </button>
       </header>
 
-      <div className="flex flex-col lg:flex-row h-[calc(100vh-73px)]">
+      <div className="flex flex-col lg:flex-row h-[calc(88vh-60px)]">
         {/* 2. Sidebar Steps */}
         <aside className="w-full lg:w-24 border-r border-slate-200 bg-slate-50 flex lg:flex-col items-center py-8 gap-8 overflow-x-auto">
           {steps.map((s) => (

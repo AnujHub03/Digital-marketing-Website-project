@@ -71,7 +71,7 @@ const TemplateSelect = () => {
         <p className="text-lg text-gray-600 mb-6">
           Simple to use and ready in minutes resume templates — give it a try for free now!
         </p>
-        <Link to="/resume-builder" className="btn btn-link text-blue-600 font-bold px-0 gap-1.5 min-h-0 h-auto">
+        <Link to="" className="btn btn-link text-blue-600 font-bold px-0 gap-1.5 min-h-0 h-auto">
           Choose later 
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="9 5l7 7-7 7" />
