@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import ResumeBuilder from './Pages/ResumeBuilder'
 import TemplateSelect from './Pages/TemplatesSelect'
+import AboutUs from './Pages/AboutUs'
 import JobPortal from './Pages/JobPortal'
 import PortfolioMaker from './Pages/PortfolioMaker'
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/TemplateSelect' element={<TemplateSelect/>}></Route>
         <Route path='/PortfolioMaker' element={<PortfolioMaker/>}></Route>
         <Route path='/jobportal' element={<JobPortal/>}></Route>
+        <Route path='/about' element={<AboutUs/>}/>
        
       </Routes>
     </>
