@@ -30,8 +30,14 @@ const Navbar = () => {
           </ul>
         </div>
      
-        <Link className="btn btn-ghost text-2xl font-bold font-serif tracking-tighter" to="/">LOGO</Link>
-      </div>
+        <Link className="flex items-center gap-2" to="/">
+            <img 
+              src="src/assets/logo (2).png" 
+              alt="WebTech Logo" 
+              className="h-10 w-auto object-contain lg:h-16 rounded" 
+            />
+          </Link>
+        </div>
 
       <div className="navbar-center hidden lg:flex items-center gap-8">
         <div className="flex items-center">
@@ -42,23 +48,23 @@ const Navbar = () => {
           />
         </div>
 
-        <ul className="menu menu-horizontal px-1 gap-2 font-medium">
-          <li><Link to="/">Home</Link></li>
-          <li><Link>About</Link></li>
-          <li><Link>Contact</Link></li>
-          <li><Link>Our Services</Link></li>
+        <ul className="menu menu-horizontal px-1 gap-2 font-medium ">
+          <li><Link to="/" className="hover:text-orange-600">Home</Link></li>
+          <li><Link to="/about" className="hover:text-orange-600">About</Link></li>
+          <li><Link to="/contact" className="hover:text-orange-600">Contact</Link></li>
+          <li><Link to="/services" className="hover:text-orange-600">Our Services</Link></li>
 
           <li className="dropdown dropdown-hover">
             <div tabIndex={0} role="button" className="flex items-center gap-1">
-              Advance Features
+             <h1 className="hover:text-orange-600">Advance Features</h1>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </div>
             <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow-xl bg-base-100 rounded-box w-52 top-full border border-base-200">
-              <li><Link>Influncer Form</Link></li>
-                  <li><Link to="/jobportal">Job Portal</Link></li>
-                  <li><Link>Buy Domain</Link></li>
+              <li><Link to="/influencer" className="hover:text-orange-600">Influencer Form</Link></li>
+                  <li><Link to="/jobportal" className="hover:text-orange-600">Job Portal</Link></li>
+                  <li><Link to="/buysubdomain" className="hover:text-orange-600" >Buy Domain</Link></li>
             </ul>
           </li>
         </ul>
