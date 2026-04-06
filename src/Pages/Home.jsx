@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Search,
-  MousePointer2,
   Share2,
   Layout,
   MapPin,
@@ -12,7 +11,40 @@ import {
   BarChart,
 } from "lucide-react";
 import Webthech from "../Components/Webthech";
+import ResultHero from "../Components/ResultHero";
 
+// A small helper component to handle the scroll reveal logic per section
+const RevealOnScroll = ({ children, delay = "0ms" }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 } // Trigger when 15% of the element is visible
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: delay }}
+      className={`transition-all duration-1000 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
+    >
+      {children}
+    </div>
+  );
+};
 const Home = () => {
   // Brand Colors based on Logo:
   // Teal: #3D7E8C | Orange: #F39221
@@ -68,7 +100,7 @@ const Home = () => {
       <section className="relative pt-16    px-6 overflow-hidden">
         {/* Animated Background Element */}
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-gradient-to-r from-[#3D7E8C]/10 to-[#F39221]/10 blur-3xl rounded-full -z-10 animate-pulse"></div>
-
+        <RevealOnScroll>
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-200 mb-8 animate-bounce">
             <Zap className="w-4 h-4 text-[#F39221]" fill="currentColor" />
@@ -107,11 +139,13 @@ const Home = () => {
             </button>
           </div>
         </div>
+        </RevealOnScroll>
       </section>
 
       {/* --- CORE SERVICES SECTION --- */}
       <section className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto">
+         <RevealOnScroll>
           <div className="mb-16">
             <h2 className="text-[#F39221] font-black uppercase tracking-[0.3em] text-sm mb-4">
               Our Core Services
@@ -121,9 +155,11 @@ const Home = () => {
               Marketing Solutions
             </h3>
           </div>
+          </RevealOnScroll>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
+              <RevealOnScroll key={index} delay={`${index * 100}ms`}>
               <div
                 key={index}
                 className="group p-10 rounded-[2.5rem] bg-white border border-slate-100 hover:border-transparent hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-500 relative overflow-hidden"
@@ -156,6 +192,7 @@ const Home = () => {
                   Learn more <ArrowRight size={16} />
                 </Link>
               </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>
@@ -163,6 +200,7 @@ const Home = () => {
 
       {/* --- FEATURED BUILD TOOLS --- */}
       <section className="py-24 px-6 bg-slate-900 rounded-[3rem] mx-4 my-10 text-white relative overflow-hidden">
+        <RevealOnScroll>
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#F39221]/10 blur-[100px] rounded-full"></div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -228,9 +266,14 @@ const Home = () => {
             </div>
           </div>
         </div>
+        </RevealOnScroll>
       </section>
-
+      <RevealOnScroll>
       <Webthech />
+      </RevealOnScroll>
+       <RevealOnScroll>
+      <ResultHero />
+      </RevealOnScroll>
     </div>
   );
 };
