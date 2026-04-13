@@ -1,21 +1,18 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Context";
+// Icons for a professional touch
+import { LayoutDashboard, LogOut, User, ChevronDown } from "lucide-react";
+
 const Navbar = () => {
   const nav = useNavigate();
-  
   const { user, logout } = useAuth();
-  // Ref for the mobile details element to close it programmatically
   const mobileDetailsRef = useRef(null);
 
   const handleLinkClick = () => {
-    // 1. For Desktop: This removes focus from the active element, 
-    // which hides the dropdown-hover/dropdown-content.
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
-
-    // 2. For Mobile: This closes the <details> tag manually.
     if (mobileDetailsRef.current) {
       mobileDetailsRef.current.removeAttribute("open");
     }
@@ -95,39 +92,66 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-2">
+        {!user ? (
+          <button className="btn btn-primary btn-sm lg:btn-md p-2 px-6 rounded-lg">
+            <Link to="/auth">Login | Signup</Link>
+          </button>
+        ) : (
+          <div className="dropdown dropdown-end">
+            {/* --- IMPROVED AVATAR SECTION --- */}
+            <div 
+              tabIndex={0} 
+              role="button" 
+              className="flex items-center gap-2 p-1 hover:bg-base-200 rounded-full transition-all border border-transparent active:scale-95"
+            >
+              <div className="avatar">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 bg-indigo-600 text-white flex items-center justify-center font-bold">
+                  {user?.name ? user.name[0].toUpperCase() : "U"}
+                </div>
+              </div>
+              <ChevronDown size={14} className="text-base-content/50" />
+            </div>
 
-  {!user ? (
-    // 🔹 Not logged in
-    <button className="btn btn-primary btn-sm lg:btn-md p-2">
-      <Link to="/auth">Login | Signup</Link>
-    </button>
-  ) : (
-    // 🔹 Logged in
-    <div className="dropdown dropdown-end">
-      
-      <div tabIndex={0} role="button" className="btn btn-ghost avatar">
-        <div className="w-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
-          {user?.name ? user.name[0].toUpperCase() : "U"}
-        </div>
+            {/* --- CLEAN PROFESSIONAL DROPDOWN --- */}
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[100] p-2 shadow-2xl bg-base-100 rounded-2xl w-60 border border-base-200 animate-in fade-in zoom-in duration-200"
+            >
+              {/* User Identity Header */}
+              <div className="px-4 py-3 mb-2 border-b border-base-200">
+                <p className="font-bold text-sm truncate">{user?.name || "Account"}</p>
+                <p className="text-[11px] opacity-60 truncate">{user?.email || "User profile"}</p>
+              </div>
+
+              <li>
+                <Link to="/dashboard" className="flex items-center gap-3 py-2.5 rounded-lg active:bg-primary" onClick={handleLinkClick}>
+                  <LayoutDashboard size={18} className="text-primary" />
+                  <span>Dashboard</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/profile" className="flex items-center gap-3 py-2.5 rounded-lg" onClick={handleLinkClick}>
+                  <User size={18} />
+                  <span>Account Settings</span>
+                </Link>
+              </li>
+
+              <div className="h-px bg-base-200 my-1"></div>
+
+              <li>
+                <button 
+                  onClick={logout}
+                  className="flex items-center gap-3 py-2.5 rounded-lg text-error hover:bg-error/10 font-semibold"
+                >
+                  <LogOut size={18} />
+                  <span>Logout</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
-
-      <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-
-        <li>
-          <button onClick={logout}>Logout</button>
-        </li>
-      </ul>
-
-    </div>
-  )}
-
-</div>
     </div>
   );
 };
