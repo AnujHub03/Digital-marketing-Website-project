@@ -54,7 +54,7 @@ const Home = () => {
       >
         <div className="max-w-6xl mx-auto relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">Professional Build Tools</h2>
-          <p className="text-slate-400 font-medium mb-16">Free resources to kickstart your professional journey.</p>
+          <p className="text-slate-400 font-medium mb-16">Free resources to kickstart your professional tools.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {/* Tool 1 */}
