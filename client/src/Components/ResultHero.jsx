@@ -1,12 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion'; // Step 1: Import motion
+import React, { useState } from 'react';
+import { motion ,AnimatePresence} from 'framer-motion';
 import { 
-  CheckCircle, Quote, PhoneCall, HelpCircle, 
-  ChevronDown, MessageSquare 
+  CheckCircle, HelpCircle, 
+  ChevronDown, Play ,Clock, User,X
 } from 'lucide-react';
-
+import { useAuth } from "../context/Context";
 const ResultHero = () => {
-  // Brand Colors: Teal: #3D7E8C | Orange: #F39221
+  const { faqs } = useAuth(); 
+  const [activeTab, setActiveTab] = useState('Monthly');
+
+  const allClients = [ 
+    {
+      id: 1,
+      name: "Alex Rivera",
+      role: "Creative Director",
+      text: "The speed and precision of this platform changed our entire delivery pipeline. Truly elite.",
+      video: "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-1728-large.mp4"
+    },
+    {
+      id: 2,
+      name: "Sarah Chen",
+      role: "Startup Founder",
+      text: "I was able to launch my landing page in record time. The conversion rates are through the roof!",
+      video: "https://assets.mixkit.co/videos/preview/mixkit-young-woman-working-at-a-laptop-in-a-cafe-43152-large.mp4"
+    },
+    {
+      id: 3,
+      name: "Marcus Thorne",
+      role: "E-commerce Expert",
+      text: "Securing my domain and setting up the shop was seamless. Highly recommended for professionals.",
+      video: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-working-on-a-laptop-4422-large.mp4"
+    },
+    {
+      id: 4,
+      name: "Elena Rodriguez",
+      role: "Digital Nomad",
+      text: "The portfolio maker is cinematic. My clients are consistently impressed by the presentation.",
+      video: "https://assets.mixkit.co/videos/preview/mixkit-business-woman-using-a-laptop-at-her-office-desk-42503-large.mp4"
+    }
+  ];
 
   const results = [
     "Higher Google Rankings", "More Website Traffic", 
@@ -14,191 +46,348 @@ const ResultHero = () => {
     "Strong Online Presence"
   ];
 
-  // Animation Variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
+  const durations = [
+    { id: 'Monthly', label: 'Monthly', sub: '(1 month)' },
+    { id: 'Quarterly', label: 'Quarterly', sub: '(3 months)' },
+    { id: 'HalfYearly', label: 'Half Yearly', sub: '(6 months)' },
+    { id: 'Yearly', label: 'Yearly', sub: '(12 months)' },
+  ];
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
+  const packageData = [
+    {
+      title: "Basic",
+      desc: "Perfect for personal branding.",
+      prices: { Monthly: "4,999", Quarterly: "13,499", HalfYearly: "24,999", Yearly: "45,999" },
+      features: ["5 Social Media Posts", "Basic SEO", "Email Support", "1 Revision"],
+      featured: false
+    },
+    {
+      title: "Standard",
+      desc: "Ideal for growing startups.",
+      prices: { Monthly: "9,999", Quarterly: "26,999", HalfYearly: "49,999", Yearly: "89,999" },
+      features: ["15 Social Media Posts", "Advanced SEO", "WhatsApp Support", "3 Revisions"],
+      featured: true
+    },
+    {
+      title: "Premium",
+      desc: "Full digital transformation.",
+      prices: { Monthly: "19,999", Quarterly: "53,999", HalfYearly: "99,999", Yearly: "1,79,999" },
+      features: ["30 Social Media Posts", "Technical SEO", "Priority Support", "Unlimited Revisions"],
+      featured: false
+    },
+    {
+      title: "Enterprise",
+      desc: "Tailored for large corporations.",
+      prices: { Monthly: "39,999", Quarterly: "1,07,999", HalfYearly: "1,99,999", Yearly: "3,59,999" },
+      features: ["Custom Strategy", "Ad Campaign Mgmt", "Dedicated Manager", "Full Tech Support"],
+      featured: false
     }
+  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
+const handleOpenModal = (packageTitle) => {
+    setSelectedPackage(packageTitle);
+    setIsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedPackage("");
+  };
   return (
-    <div className="font-montserrat text-slate-800 overflow-hidden">
+    <div className="font-montserrat text-base-content overflow-hidden w-full">
       
       {/* --- SECTION 1: EXPECTED RESULTS --- */}
-      <section className="py-20 px-6 bg-slate-50">
+      {/* 1. Changed bg-slate-50 to bg-base-200 for a responsive sectional contrast */}
+      <section className="py-20 px-6 bg-base-200 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="text-[#3D7E8C]">🔷</span> Results You Can Expect
-            </h2>
-            <p className="text-slate-500 font-medium">Data-backed growth for your digital footprint.</p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <div className="text-center mb-16">
+            {/* 2. Added text-base-content to make sure the main header flips color */}
+            <h2 className="text-3xl md:text-5xl font-black mb-4 text-base-content">Results You Can Expect</h2>
+            {/* 3. Changed text-slate-500 to text-base-content/70 for adaptive subtext */}
+            <p className="text-base-content/70 font-medium">Data-backed growth for your digital footprint.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.map((res, i) => (
-              <motion.div 
-                key={i} 
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02, backgroundColor: "#fff" }}
-                className="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border-b-4 border-[#3D7E8C] transition-shadow hover:shadow-md"
-              >
-                <CheckCircle className="text-[#3D7E8C] flex-shrink-0" size={24} />
+              /* 4. Changed bg-white to bg-base-100 so the cards look crisp and clean in both modes.
+                    Added text-base-content here to guarantee readability of the {res} item string. */
+              <div key={i} className="flex items-center gap-4 p-6 bg-base-100 text-base-content rounded-2xl shadow-sm border-b-4 border-[#3D7E8C]">
+                <CheckCircle className="text-[#3D7E8C]" size={24} />
                 <span className="font-bold text-lg">{res}</span>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* --- SECTION 2: TESTIMONIALS --- */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-black text-center tracking-tight mb-12"
-          >
-            <span className="text-[#3D7E8C]">🔷</span> Client Testimonials
-          </motion.h2>
+      {/* --- SECTION 2: VIDEO MARQUEE (FIXED: TRUE EDGE-TO-EDGE RECTANGLE) --- */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes marquee-infinite {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee-infinite {
+          display: flex;
+          width: max-content;
+          animation: marquee-infinite 40s linear infinite;
+        }
+        .animate-marquee-infinite:hover {
+          animation-play-state: paused;
+        }
+      `}} />
+      
+      <section className="py-24 bg-base-100 overflow-hidden w-full px-0"> {/* px-0 is critical here */}
+        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+          <h2 className="text-4xl md:text-6xl font-black mb-4 tracking-tight">
+            What our <span className="text-[#F39221]">Clients</span> say <span className="text-base-content">About us</span>
+          </h2>
+          <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-xs">
+            Success Stories in Motion
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { text: "Webtech Services helped us grow our business online and generate quality leads.", initial: "B", role: "Business Owner" },
-              { text: "Highly professional team with great digital marketing strategies.", initial: "M", role: "Marketing Director" }
-            ].map((client, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative p-10 rounded-[2rem] bg-[#F8FAFB] border border-slate-100"
+        {/* Outer wrapper: no padding, no max-width */}
+        <div className="relative w-full bg-slate-950 overflow-hidden">
+          <div className="animate-marquee-infinite flex">
+            {[...allClients, ...allClients].map((client, index) => (
+              <div
+                key={`${client.id}-${index}`}
+                className="w-[300px] md:w-[450px] bg-slate-950 border-r border-slate-600 flex flex-col group transition-all duration-500 rounded-none"
               >
-                <Quote className="absolute top-6 left-6 text-[#F39221]/20" size={40} fill="currentColor" />
-                <p className="italic text-lg text-slate-600 mb-6 relative z-10 leading-relaxed">"{client.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#3D7E8C] flex items-center justify-center text-white font-bold">
-                    {client.initial}
+                {/* Video - No rounded corners */}
+                <div className="relative aspect-video bg-black overflow-hidden rounded-none">
+                  <video 
+                    src={client.video}
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-700 rounded-none"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/20">
+                      <Play size={12} className="text-slate-300 fill-slate-300" />
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-black text-sm text-slate-900 leading-none">{client.role}</p>
-                    <p className="text-xs text-slate-400 mt-1">Verified Client</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                </div>
+
+                {/* Text Content */}
+                <div className="p-8 flex flex-col flex-grow rounded-none">
+                  <p className="text-slate-300 font-medium text-base italic mb-6 leading-relaxed flex-grow">
+                    "{client.text}"
+                  </p>
+                  
+                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                    <div className="w-10 h-10 rounded-md bg-gradient-to-br from-[#3D7E8C] to-[#F39221] flex items-center justify-center text-white text-base font-black">
+                      {client.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h4 className="font-black text-xs text-white tracking-tight">{client.name}</h4>
+                      <p className="text-[9px] text-[#F39221] font-black uppercase tracking-widest">{client.role}</p>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
+
+          {/* Side Fades - Reduced for a cleaner edge-to-edge look */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950/40 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950/40 to-transparent z-10" />
         </div>
       </section>
 
-      {/* --- SECTION 3: CALL TO ACTION (CTA) --- */}
-      <section className="px-6 py-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto rounded-[3rem] bg-slate-800 p-10 md:p-20 text-center text-white relative overflow-hidden shadow-2xl"
-        >
-          {/* Animated Background Glow */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.2, 0.3, 0.2] 
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute top-0 right-0 w-64 h-64 bg-[#3D7E8C] blur-[80px] rounded-full translate-x-1/2 -translate-y-1/2"
-          ></motion.div>
-          
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Ready to Grow Your <br/>Business Online?</h2>
-            <p className="text-teal-50 max-w-2xl mx-auto mb-10 text-lg font-medium">Partner with Webtech Services – your trusted digital marketing agency in Delhi. Let’s turn your vision into revenue.</p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-[#F39221] hover:bg-orange-500 text-white rounded-2xl font-black shadow-lg flex items-center justify-center gap-3"
-              >
-                <PhoneCall size={20} /> Contact Us Today
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white text-[#3D7E8C] hover:bg-slate-50 rounded-2xl font-black flex items-center justify-center gap-3"
-              >
-                <MessageSquare size={20} /> Get Free Consultation
-              </motion.button>
-            </div>
+      {/* --- SECTION 3: PRICING --- */}
+    <section className="py-24 px-6 bg-base-200">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-black mb-4 tracking-tight">
+          Our <span className="text-[#F39221]">Packages</span>
+        </h2>
+        <div className="w-24 h-2 bg-[#3D7E8C] mx-auto rounded-full"></div>
+      </div>
+
+      {/* Duration Toggle */}
+      <div className="flex justify-center mb-20 px-6">
+        <div className="flex flex-wrap md:flex-nowrap justify-center gap-4 w-full max-w-7xl">
+          {durations.map((d) => (
+            <button
+              key={d.id}
+              onClick={() => setActiveTab(d.id)}
+              className={`flex flex-col items-center justify-center flex-1 min-w-[180px] py-8 rounded-[2.5rem] transition-all duration-300 border-2 ${
+                activeTab === d.id 
+                ? 'bg-slate-900 border-slate-900 text-white shadow-2xl scale-105 z-10' 
+                : 'bg-white border-slate-100 text-slate-400 hover:border-[#3D7E8C]/50'
+              }`}
+            >
+              <span className="text-base font-black uppercase tracking-[0.2em]">{d.label}</span>
+              <span className={`text-[10px] font-bold mt-1 uppercase tracking-widest ${activeTab === d.id ? 'text-[#F39221]' : 'text-slate-400'}`}>
+                {d.sub}
+              </span>
+              {activeTab === d.id && (
+                <motion.div layoutId="activeUnderline" className="w-12 h-1.5 bg-[#3D7E8C] mt-4 rounded-full" />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  {packageData.map((pkg, i) => (
+    <motion.div
+      key={i}
+      whileHover={{ y: -10 }}
+      className={`relative p-10 rounded-[3rem] border-2 flex flex-col transition-all duration-500 overflow-hidden text-white ${
+        pkg.featured
+          ? "bg-[#16676e] border-[#F39221] shadow-2xl scale-105 z-10"
+          : "bg-[#27717e] border-white/5"
+      }`}
+    >
+      {pkg.featured && (
+        <div className="absolute top-6 right-8 bg-[#F39221] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase">
+          Most Popular
+        </div>
+      )}
+
+      <div className="relative z-10">
+        <h3 className="text-2xl font-black mb-3 tracking-tight">
+          {pkg.title}
+        </h3>
+        <p className="text-white text-sm font-medium mb-8 leading-relaxed h-12">
+          {pkg.desc}
+        </p>
+      </div>
+
+      <div className="mb-10 relative z-10">
+        <div className="flex items-baseline gap-1">
+          <span className="text-4xl font-black">
+            ₹{pkg.prices[activeTab]}
+          </span>
+          <span className="text-white text-lg font-bold">/-</span>
+        </div>
+      </div>
+
+      <div className="space-y-5 flex-grow mb-12 relative z-10">
+        {pkg.features.map((f, idx) => (
+          <div
+            key={idx}
+            className="flex items-start gap-4 text-xs font-bold text-white"
+          >
+            <CheckCircle size={14} className="text-[#F39221] mt-0.5" />
+            <span>{f}</span>
           </div>
-        </motion.div>
-      </section>
+        ))}
+      </div>
 
-      {/* --- SECTION 4: FAQ SECTION --- */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <motion.div 
-             initial="hidden"
-             whileInView="visible"
-             viewport={{ once: true }}
-             variants={fadeInUp}
-             className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="text-[#3D7E8C]">🔷</span> FAQ Section
-            </h2>
-            <p className="text-slate-500 font-medium">Quick answers to boost your SEO knowledge.</p>
-          </motion.div>
+      <button
+        onClick={() => handleOpenModal(pkg.title)}
+        className="relative z-10 w-full py-5 rounded-2xl text-sm font-black uppercase tracking-widest transition-all bg-[#F39221] text-black hover:bg-[#ED9A3B]"
+      >
+        Get Started Now
+      </button>
+    </motion.div>
+  ))}
+</div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="space-y-4"
-          >
-            {[
-              { q: "Why choose Webtech Services?", a: "We provide customized, result-driven strategies that help businesses grow faster by focusing on ROI." },
-              { q: "How long does SEO take?", a: "SEO is a long-term investment. It usually takes 3–6 months depending on competition." },
-              { q: "Do you provide Google Ads?", a: "Yes, we run high-performing PPC campaigns specializing in lead generation." }
-            ].map((faq, i) => (
-              <motion.details 
-                key={i} 
-                variants={fadeInUp}
-                className="group p-6 rounded-2xl bg-[#F8FAFB] border border-transparent hover:border-[#3D7E8C]/20 transition-all cursor-pointer shadow-sm"
+      {/* Centered Modal Pop-up Form */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop Blur Overlap */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleCloseModal}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+
+            {/* Form Container */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md bg-[#16676e] border border-[#3D7E8C] p-8 rounded-[2.5rem] shadow-2xl z-10 text-white"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={handleCloseModal}
+                className="absolute top-6 right-6 text-slate-300 hover:text-[#F39221] transition-colors"
               >
-                <summary className="flex items-center justify-between font-black text-slate-800 list-none">
+                <X size={24} />
+              </button>
+
+              {/* Form Header */}
+              <div className="mb-6">
+                <h3 className="text-2xl font-black tracking-tight mb-1">Get Started</h3>
+                <p className="text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                  Package: <span className="text-[#F39221]">{selectedPackage}</span>
+                </p>
+              </div>
+
+              {/* Input Fields */}
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="John Doe" 
+                    className="w-full px-4 py-3 bg-[#27717e] border border-white/10 rounded-xl focus:outline-none focus:border-[#F39221] text-white font-medium text-sm transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    placeholder="john@example.com" 
+                    className="w-full px-4 py-3 bg-[#27717e] border border-white/10 rounded-xl focus:outline-none focus:border-[#F39221] text-white font-medium text-sm transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    placeholder="+91 98765 43210" 
+                    className="w-full px-4 py-3 bg-[#27717e] border border-white/10 rounded-xl focus:outline-none focus:border-[#F39221] text-white font-medium text-sm transition-all"
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="w-full mt-6 py-4 rounded-xl text-sm font-black uppercase tracking-widest transition-all bg-[#f39121] text-black hover:bg-[#ed9a3b] shadow-lg shadow-[#f39121]/20"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  </section>
+
+      {/* --- SECTION 4: FAQ --- */}
+      <section className="py-24 px-6 bg-base-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black mb-12 text-center">FAQ Section</h2>
+          <div className="space-y-4">
+            {faqs && faqs.map((faq, i) => (
+              <details key={i} className="group p-6 rounded-2xl bg-base-100 shadow-sm cursor-pointer">
+                <summary className="flex items-center justify-between font-black text-base-content list-none">
                   <div className="flex items-center gap-3">
                     <HelpCircle className="text-[#3D7E8C]" size={20} />
-                    {faq.q}
+                    {faq.question}
                   </div>
-                  <ChevronDown className="group-open:rotate-180 transition-transform text-slate-400" size={20} />
+                  <ChevronDown className="group-open:rotate-180 transition-transform" size={20} />
                 </summary>
-                <p className="mt-4 text-slate-600 font-medium leading-relaxed pl-8 border-l-2 border-[#3D7E8C]">
-                  {faq.a}
-                </p>
-              </motion.details>
+                <p className="mt-4 text-base-content font-medium pl-8 border-l-2 border-[#3D7E8C]">{faq.answer}</p>
+              </details>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
