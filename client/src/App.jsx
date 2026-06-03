@@ -13,6 +13,7 @@ import JobPortal from './Pages/JobPortal'
 import PortfolioMaker from './Pages/PortfolioMaker'
 import AuthPage from './Pages/AuthPage'
 import Dashboard from './Pages/Dashboard'
+import Footer from './Components/Footer'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/about' element={<AboutUs/>}/>
        
       </Routes>
+      <Footer />
     </>
   )
 }
