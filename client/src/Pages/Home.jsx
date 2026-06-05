@@ -9,6 +9,7 @@ import Webthech from "../Components/Webthech";
 import ResultHero from "../Components/ResultHero";
 // ← pulls faqs, packages, clients
 import { useAuth } from "../context/Context";
+import BlogSection from "../Components/BlogSection";
 
 
    const Home = () => {
@@ -399,6 +400,7 @@ useEffect(() => {
 
       <Webthech />
       <ResultHero />
+      <BlogSection />
     </div>
   );
 };
