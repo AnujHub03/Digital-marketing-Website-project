@@ -14,6 +14,7 @@ import PortfolioMaker from './Pages/PortfolioMaker'
 import AuthPage from './Pages/AuthPage'
 import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
+import BlogList from './Pages/BlogList'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/PortfolioMaker' element={<PortfolioMaker/>}></Route>
         <Route path='/jobportal' element={<JobPortal/>}></Route>
         <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/blog' element={<BlogList/>}/>
        
       </Routes>
       <Footer />
