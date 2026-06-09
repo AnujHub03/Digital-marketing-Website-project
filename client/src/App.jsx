@@ -15,6 +15,7 @@ import AuthPage from './Pages/AuthPage'
 import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
 import BlogList from './Pages/BlogList'
+import ScrollTotop from './Components/ScrollTotop'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
     <Navbar />
+    <ScrollTotop />
       <Routes>
         <Route path="/" element={<Home/>} /> 
         <Route path="/auth" element={<AuthPage />} />
