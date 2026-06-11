@@ -16,6 +16,7 @@ import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
 import BlogList from './Pages/BlogList'
 import ScrollTotop from './Components/ScrollTotop'
+import HrPortal from './Components/HrPortal'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/jobportal' element={<JobPortal/>}></Route>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/blog' element={<BlogList/>}/>
+        <Route path='/Hrportal' element={<HrPortal/>}/>
        
       </Routes>
       <Footer />
