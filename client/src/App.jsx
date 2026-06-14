@@ -17,6 +17,7 @@ import Footer from './Components/Footer'
 import BlogList from './Pages/BlogList'
 import ScrollTotop from './Components/ScrollTotop'
 import HrPortal from './Components/HrPortal'
+import { Contact } from 'lucide-react'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/PortfolioMaker' element={<PortfolioMaker/>}></Route>
         <Route path='/jobportal' element={<JobPortal/>}></Route>
         <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/contact' element={<Contact/>}/>
         <Route path='/blog' element={<BlogList/>}/>
         <Route path='/Hrportal' element={<HrPortal/>}/>
        
