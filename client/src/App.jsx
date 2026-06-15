@@ -17,7 +17,8 @@ import Footer from './Components/Footer'
 import BlogList from './Pages/BlogList'
 import ScrollTotop from './Components/ScrollTotop'
 import HrPortal from './Components/HrPortal'
-import { Contact } from 'lucide-react'
+import Contact from './Pages/Contact'
+
 
 function App() {
 
