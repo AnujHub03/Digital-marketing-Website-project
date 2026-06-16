@@ -18,6 +18,7 @@ import BlogList from './Pages/BlogList'
 import ScrollTotop from './Components/ScrollTotop'
 import HrPortal from './Components/HrPortal'
 import Contact from './Pages/Contact'
+import OurServices from './Pages/OurServices'
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/jobportal' element={<JobPortal/>}></Route>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/Ourservices' element={<OurServices/>}/>
         <Route path='/blog' element={<BlogList/>}/>
         <Route path='/Hrportal' element={<HrPortal/>}/>
        
