@@ -19,6 +19,7 @@ import ScrollTotop from './Components/ScrollTotop'
 import HrPortal from './Components/HrPortal'
 import Contact from './Pages/Contact'
 import OurServices from './Pages/OurServices'
+import SipCalculator from './Pages/SipCalculator'
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path='/Ourservices' element={<OurServices/>}/>
         <Route path='/blog' element={<BlogList/>}/>
         <Route path='/Hrportal' element={<HrPortal/>}/>
+        <Route path='/SIPCalculator' element={<SipCalculator/>}/>
        
       </Routes>
       <Footer />
