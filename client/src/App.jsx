@@ -20,6 +20,7 @@ import HrPortal from './Components/HrPortal'
 import Contact from './Pages/Contact'
 import OurServices from './Pages/OurServices'
 import SipCalculator from './Pages/SipCalculator'
+import WhySEO from './Pages/WhySEO'
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path='/blog' element={<BlogList/>}/>
         <Route path='/Hrportal' element={<HrPortal/>}/>
         <Route path='/SIPCalculator' element={<SipCalculator/>}/>
+        <Route path='/WhySEO' element={<WhySEO/>}/>
        
       </Routes>
       <Footer />
