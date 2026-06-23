@@ -21,6 +21,7 @@ import Contact from './Pages/Contact'
 import OurServices from './Pages/OurServices'
 import SipCalculator from './Pages/SipCalculator'
 import WhySEO from './Pages/WhySEO'
+import LandingPage from './Pages/LandingPage'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path='/Hrportal' element={<HrPortal/>}/>
         <Route path='/SIPCalculator' element={<SipCalculator/>}/>
         <Route path='/WhySEO' element={<WhySEO/>}/>
+        <Route path='/landingpage' element={<LandingPage/>}/>
        
       </Routes>
       <Footer />
