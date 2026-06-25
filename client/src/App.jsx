@@ -22,6 +22,7 @@ import OurServices from './Pages/OurServices'
 import SipCalculator from './Pages/SipCalculator'
 import WhySEO from './Pages/WhySEO'
 import LandingPage from './Pages/LandingPage'
+import InfluencerPage from './Pages/InfluencerPage'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path='/SIPCalculator' element={<SipCalculator/>}/>
         <Route path='/WhySEO' element={<WhySEO/>}/>
         <Route path='/landingpage' element={<LandingPage/>}/>
+        <Route path='//influencer-form' element={<InfluencerPage/>}/>
        
       </Routes>
       <Footer />
