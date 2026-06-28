@@ -49,8 +49,8 @@ function App() {
         <Route path='/SIPCalculator' element={<SipCalculator/>}/>
         <Route path='/WhySEO' element={<WhySEO/>}/>
         <Route path='/landingpage' element={<LandingPage/>}/>
-        <Route path='//influencer-form' element={<InfluencerPage/>}/>
-        <Route path='//industries' element={<IndustriesWeWorkWith/>}/>
+        <Route path='/influencer-form' element={<InfluencerPage/>}/>
+        <Route path='/industries' element={<IndustriesWeWorkWith/>}/> 
        
       </Routes>
       <Footer />
