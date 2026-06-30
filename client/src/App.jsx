@@ -24,6 +24,7 @@ import WhySEO from './Pages/WhySEO'
 import LandingPage from './Pages/LandingPage'
 import InfluencerPage from './Pages/InfluencerPage'
 import IndustriesWeWorkWith from './Pages/IndustriesWeWorkWith'
+import Carrer from './Pages/Carrer'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path='/landingpage' element={<LandingPage/>}/>
         <Route path='/influencer-form' element={<InfluencerPage/>}/>
         <Route path='/industries' element={<IndustriesWeWorkWith/>}/> 
+        <Route path='/Career' element={<Carrer/>}/> 
        
       </Routes>
       <Footer />
