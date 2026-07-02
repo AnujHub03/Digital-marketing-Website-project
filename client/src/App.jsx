@@ -25,6 +25,7 @@ import LandingPage from './Pages/LandingPage'
 import InfluencerPage from './Pages/InfluencerPage'
 import IndustriesWeWorkWith from './Pages/IndustriesWeWorkWith'
 import Carrer from './Pages/Carrer'
+import Blog from './Components/Blog'
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path='/influencer-form' element={<InfluencerPage/>}/>
         <Route path='/industries' element={<IndustriesWeWorkWith/>}/> 
         <Route path='/Career' element={<Carrer/>}/> 
+        <Route path='/Blog' element={<Blog/>}/> 
        
       </Routes>
       <Footer />
