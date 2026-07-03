@@ -25,7 +25,7 @@ import LandingPage from './Pages/LandingPage'
 import InfluencerPage from './Pages/InfluencerPage'
 import IndustriesWeWorkWith from './Pages/IndustriesWeWorkWith'
 import Carrer from './Pages/Carrer'
-import Blog from './Components/Blog'
+import Blog from './Pages/Blog'
 
 
 function App() {
