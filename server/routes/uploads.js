@@ -7,3 +7,19 @@ const router  = express.Router();
 
 // multer: keep file in memory (no disk writes)
 const upload  = multer({ storage: multer.memoryStorage() });
+
+// ── helpers ───────────────────────────────────────────────────────────────────
+
+/** Upload a Node.js Buffer to Cloudinary via a readable stream. */
+function uploadBuffer(buffer, folder) {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: folder || "webtech", resource_type: "auto" },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+}
