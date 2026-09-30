@@ -23,3 +23,11 @@ function uploadBuffer(buffer, folder) {
     streamifier.createReadStream(buffer).pipe(stream);
   });
 }
+
+/** Upload a base64 data-URI string directly to Cloudinary. */
+function uploadBase64(dataUri, folder) {
+  return cloudinary.uploader.upload(dataUri, {
+    folder:        folder || "webtech",
+    resource_type: "auto",
+  });
+}
