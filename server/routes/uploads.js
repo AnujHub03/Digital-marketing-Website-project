@@ -31,3 +31,10 @@ function uploadBase64(dataUri, folder) {
     resource_type: "auto",
   });
 }
+// ── POST /api/upload ──────────────────────────────────────────────────────────
+router.post(
+  "/",
+  upload.single("file"),   // handles multipart; no-op if body is JSON
+  async (req, res) => {
+    try {
+      let result;
