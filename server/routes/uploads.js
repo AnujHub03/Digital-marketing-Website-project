@@ -38,3 +38,12 @@ router.post(
   async (req, res) => {
     try {
       let result;
+         if (req.file) {
+        // ── multipart upload ──────────────────────────────────────────────
+        result = await uploadBuffer(req.file.buffer, req.body.folder);
+      } else if (req.body?.data) {
+        // ── base64 JSON upload ────────────────────────────────────────────
+        result = await uploadBase64(req.body.data, req.body.folder);
+      } else {
+        return res.status(400).json({ message: "No file or data provided." });
+      }
