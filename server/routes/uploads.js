@@ -54,3 +54,14 @@ router.post(
     }
   }
 );
+// ── DELETE /api/upload/:publicId  (optional — for cleanup) ───────────────────
+router.delete("/:publicId", async (req, res) => {
+  try {
+    const result = await cloudinary.uploader.destroy(req.params.publicId, {
+      resource_type: "image",
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ message: "Delete failed", error: err.message });
+  }
+});
