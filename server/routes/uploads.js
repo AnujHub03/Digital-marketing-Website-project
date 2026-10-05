@@ -65,3 +65,4 @@ router.delete("/:publicId", async (req, res) => {
     res.status(500).json({ message: "Delete failed", error: err.message });
   }
 });
+export default router;
