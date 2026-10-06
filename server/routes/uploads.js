@@ -54,7 +54,7 @@ router.post(
     }
   }
 );
-// ── DELETE /api/upload/:publicId  (optional — for cleanup) ───────────────────
+// ── DELETE /api/upload/:publicId 
 router.delete("/:publicId", async (req, res) => {
   try {
     const result = await cloudinary.uploader.destroy(req.params.publicId, {
