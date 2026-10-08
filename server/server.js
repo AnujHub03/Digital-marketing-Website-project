@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
+import packageRoutes     from "./routes/packages.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ connectDB();
 
 // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/packages",     packageRoutes);
 
 // test
 app.get("/", (req, res) => {
